@@ -43,13 +43,11 @@ export default {
     locales: [
       {
         code: 'en',
-        name: 'English',
         nameEn: 'English',
         namePl: 'Angielski',
       },
       {
         code: 'pl',
-        name: 'Polish',
         nameEn: 'Polish',
         namePl: 'Polski',
       },
