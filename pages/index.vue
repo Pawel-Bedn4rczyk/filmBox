@@ -6,9 +6,18 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { ObjWithFilm } from '@/interfaces/commons.ts'
+import { mapGetters } from 'vuex'
 
-@Component
-export default class MainSite extends Vue {}
+@Component({
+  computed: {
+    ...mapGetters('dashboard', { films: 'getFilms' }),
+  },
+})
+export default class Dashboard extends Vue {
+  films!: ObjWithFilm
+  mounted() {
+    this.$store.dispatch('dashboard/getFilmsData')
+  }
+}
 </script>
-
-<style scoped></style>
