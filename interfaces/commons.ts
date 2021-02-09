@@ -6,6 +6,6 @@ export interface Film {
   genre_en: string
 }
 
-export interface ObjWithFilm {
-  [key: string]: Film
+export interface FilmsByGenre {
+  [key: string]: Array<Film>
 }

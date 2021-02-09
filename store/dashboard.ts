@@ -1,5 +1,6 @@
 import { Module, VuexModule, Action, Mutation } from 'vuex-module-decorators'
-import { ObjWithFilm } from '@/interfaces/commons.ts'
+import { FilmsByGenre, Film } from '@/interfaces/commons.ts'
+import { groupBy } from 'lodash'
 import { $axios } from '~/utils/api'
 
 @Module({
@@ -7,11 +8,11 @@ import { $axios } from '~/utils/api'
   namespaced: true,
 })
 export default class DashboardStore extends VuexModule {
-  films!: ObjWithFilm
+  films: FilmsByGenre = {}
 
   @Mutation
-  setFilms(films: ObjWithFilm) {
-    this.films = films
+  setFilms(films: { [key: string]: Film }) {
+    this.films = groupBy(films, 'genre_en')
   }
 
   @Action({ commit: 'setFilms' })
