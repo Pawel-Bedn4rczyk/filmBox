@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      style="position: relative; height: 130px"
+      style="position: relative; height: 130px; cursor: pointer"
       class="my-5 mt-sm-10 primaryBorder d-flex flex-column justify-center"
       tile
     >
@@ -14,9 +14,20 @@
         }}</v-icon>
       </div>
       <v-card-text class="pt-6 pb-0">
-        <h3>{{ film.name }}</h3>
-        <span>{{ film.year }}</span>
-        <p class="caption">{{ film.director }}</p>
+        <v-row align="center" no-gutters class="ma-0">
+          <v-col>
+            <h3>{{ film.name }}</h3>
+            <span>{{ film.year }}</span>
+            <p class="caption mb-0">{{ film.director }}</p>
+            <v-rating
+              v-model="film.rating"
+              background-color="var(--v-primary-base)"
+              color="var(--v-primary-base)"
+              half-increments
+              readonly
+            ></v-rating>
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
   </div>
@@ -43,5 +54,19 @@ export default class FilmBox extends Vue {
   right: 20px;
   height: 55px;
   width: 55px;
+}
+.v-rating >>> button:first-child {
+  padding-left: 0px;
+}
+.v-rating >>> button {
+  padding-top: 5px;
+}
+.v-card {
+  transition: transform 0.4s ease-in-out;
+}
+
+.v-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0.3rem var(--v-primary-base);
 }
 </style>
