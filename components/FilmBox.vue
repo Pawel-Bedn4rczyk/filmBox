@@ -1,14 +1,19 @@
 <template>
   <div>
     <v-card
-      style="border: 1px solid red; position: relative; height: 100px"
-      class="my-sm-10"
+      style="position: relative; height: 130px"
+      class="my-5 mt-sm-10 primaryBorder d-flex flex-column justify-center"
       tile
     >
-      <div class="filmIcon d-flex justify-center align-center">
-        <v-icon color="red">{{ film.icon || 'mdi-video-vintage' }}</v-icon>
+      <div
+        class="iconContainer d-flex justify-center align-center"
+        :class="darkThemeIsOn ? 'primaryBorder' : ''"
+      >
+        <v-icon color="var(--v-primary-base)" large>{{
+          film.icon || 'mdi-video-vintage'
+        }}</v-icon>
       </div>
-      <v-card-text>
+      <v-card-text class="pt-6 pb-0">
         <h3>{{ film.name }}</h3>
         <span>{{ film.year }}</span>
         <p class="caption">{{ film.director }}</p>
@@ -20,19 +25,23 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Film } from '@/interfaces/commons.ts'
+import themeMixin from '@/mixins/themeMixin'
 
-@Component
+@Component({
+  mixins: [themeMixin],
+})
 export default class FilmBox extends Vue {
   @Prop({ required: true }) film!: Film
 }
 </script>
+
 <style scoped>
-.filmIcon {
+.iconContainer {
   position: absolute;
-  background-color: white;
-  top: -25px;
+  background-color: var(--v-filmContainerbg-base);
+  top: -30px;
   right: 20px;
-  height: 50px;
-  width: 50px;
+  height: 55px;
+  width: 55px;
 }
 </style>

@@ -1,15 +1,22 @@
 <template>
   <div>
     <div v-for="(arr, name) in films" :key="name">
-      <v-card tile flat>
-        <v-card-title>
+      <v-card tile flat style="background: transparent">
+        <v-card-title style="color: var(--v-primary-base)" class="mb-8 mb-sm-0">
           <v-row class="ma-0" justify="center" align="center" no-gutters>
             <v-col
-              cols="2"
-              class="d-flex flex-column justify-center align-center pa-0 ma-0"
-              style="border-bottom: 2px solid red"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+              xl="2"
+              class="d-flex flex-column justify-center bottomBorder align-center pa-0 ma-0"
             >
-              {{ $i18n.locale === 'pl' ? arr[0].genre_pl : name }}
+              {{
+                $i18n.locale === 'pl'
+                  ? arr[0].genre_pl.toUpperCase()
+                  : name.toUpperCase()
+              }}
             </v-col>
           </v-row>
         </v-card-title>
@@ -22,6 +29,7 @@
               sm="6"
               md="4"
               lg="3"
+              xl="2"
             >
               <film-box :film="film" />
             </v-col>

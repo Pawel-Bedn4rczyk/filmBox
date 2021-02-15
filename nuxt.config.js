@@ -1,5 +1,5 @@
-import colors from 'vuetify/es5/util/colors'
 import webpack from 'webpack'
+import colors from 'vuetify/lib/util/colors'
 import i18n from './config/i18n'
 
 export default {
@@ -64,18 +64,29 @@ export default {
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: true,
+      options: { customProperties: true },
       themes: {
-        dark: {
+        light: {
           primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          secondary: '#424242',
+          accent: '#82B1FF',
+          error: '#FF5252',
+          info: '#2196F3',
+          success: '#4CAF50',
+          warning: '#FB8C00',
+          filmContainerbg: '#ffffff',
+        },
+        dark: {
+          primary: colors.indigo,
+          secondary: '#424242',
+          accent: '#FF4081',
+          error: '#FF5252',
+          info: '#2196F3',
+          success: '#4CAF50',
+          warning: '#FB8C00',
+          filmContainerbg: '#1E1E1E',
         },
       },
     },

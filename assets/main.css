@@ -1,0 +1,12 @@
+.primaryBorder {
+  border: 2px solid var(--v-primary-base) !important;
+}
+
+.bottomBorder{
+  border-bottom: 2px solid var(--v-primary-base) !important;
+}
+
+a{
+  text-decoration: none ;
+  color: inherit !important;
+}
