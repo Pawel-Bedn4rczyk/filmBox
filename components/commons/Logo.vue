@@ -1,13 +1,10 @@
 <template>
   <nuxt-link to="/">
     <v-row
-      align="center"
       class="bottomBorder"
       :class="inNavDrawer ? 'drawerStyle' : 'defaultStyle'"
     >
-      <v-icon class="mr-3" color="var(--v-primary-base)">
-        mdi-video-vintage</v-icon
-      >
+      <v-icon class="mr-3 primaryColor"> mdi-video-vintage</v-icon>
       <span>FILMBOX</span>
     </v-row>
   </nuxt-link>

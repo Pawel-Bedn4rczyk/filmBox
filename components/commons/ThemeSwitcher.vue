@@ -1,7 +1,7 @@
 <template>
   <v-tooltip bottom>
     <template v-slot:activator="{ on }">
-      <v-btn icon v-on="on" @click="switchTheme">
+      <v-btn icon class="primaryColor" v-on="on" @click="switchTheme">
         <v-icon> {{ icon }} </v-icon>
       </v-btn>
     </template>

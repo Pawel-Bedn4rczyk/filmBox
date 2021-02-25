@@ -9,7 +9,7 @@
         class="iconContainer d-flex justify-center align-center"
         :class="darkThemeIsOn ? 'primaryBorder' : ''"
       >
-        <v-icon color="var(--v-primary-base)" large>{{
+        <v-icon class="primaryColor" large>{{
           film.icon || 'mdi-video-vintage'
         }}</v-icon>
       </div>
@@ -22,7 +22,7 @@
             <v-rating
               v-model="film.rating"
               background-color="var(--v-primary-base)"
-              color="var(--v-primary-base)"
+              class="primaryColor"
               half-increments
               readonly
             ></v-rating>
@@ -63,6 +63,10 @@ export default class FilmBox extends Vue {
 }
 .v-card {
   transition: transform 0.4s ease-in-out;
+}
+
+.v-card >>> .v-card__text {
+  color: var(--v-boxTextColor-base);
 }
 
 .v-card:hover {

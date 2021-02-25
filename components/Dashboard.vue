@@ -2,7 +2,7 @@
   <div>
     <div v-for="(arr, name) in films" :key="name">
       <v-card tile flat style="background: transparent">
-        <v-card-title style="color: var(--v-primary-base)" class="mb-8 mb-sm-0">
+        <v-card-title class="mb-8 mb-sm-0 primaryColor">
           <v-row class="ma-0" justify="center" align="center" no-gutters>
             <v-col
               cols="12"

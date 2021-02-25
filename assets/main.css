@@ -6,6 +6,14 @@
   border-bottom: 2px solid var(--v-primary-base) !important;
 }
 
+.v-text-field > .v-input__control > .v-input__slot:before {
+  border-color: var(--v-primary-base) !important;
+}
+
+.primaryColor{
+  color: var(--v-primary-base) !important;
+}
+
 a{
   text-decoration: none ;
   color: inherit !important;

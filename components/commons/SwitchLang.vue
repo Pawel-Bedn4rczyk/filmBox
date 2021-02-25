@@ -10,7 +10,8 @@
     prepend-icon="mdi-web"
     single-line
     dense
-  ></v-select>
+  >
+  </v-select>
 </template>
 
 <script lang="ts">
@@ -20,4 +21,11 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class SwitchLang extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-input >>> .v-icon {
+  color: var(--v-primary-base);
+}
+.v-input >>> div {
+  color: var(--v-primary-base) !important;
+}
+</style>

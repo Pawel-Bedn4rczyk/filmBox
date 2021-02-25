@@ -78,6 +78,7 @@ export default {
           warning: '#FB8C00',
           filmContainerbg: '#ffffff',
           appBar: '#ffffff',
+          boxTextColor: colors.blue.darken2,
         },
         dark: {
           primary: colors.indigo,
@@ -89,6 +90,7 @@ export default {
           warning: '#FB8C00',
           filmContainerbg: '#1E1E1E',
           appBar: '#272727',
+          boxTextColor: '#ffffff',
         },
       },
     },

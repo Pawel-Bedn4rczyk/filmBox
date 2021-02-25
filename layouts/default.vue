@@ -7,6 +7,7 @@
         v-if="!isMobile"
         cols="6"
         sm="4"
+        md="3"
         lg="2"
         class="d-flex align-center"
       >
@@ -15,7 +16,10 @@
       </v-col>
       <v-col v-else class="d-flex justify-end">
         <!-- burger icon -->
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          class="primaryColor"
+          @click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
       </v-col>
     </v-app-bar>
     <nav-drawer v-show="!isMobile || drawer" :is-mobile="isMobile" />
