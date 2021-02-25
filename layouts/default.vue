@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-app-bar app clipped-left class="appBgColor">
-      <logo :inNavDrawer="false"/>
+      <logo :in-nav-drawer="false" />
       <v-spacer />
       <v-col
         v-if="!isMobile"
@@ -14,10 +14,11 @@
         <theme-switcher />
       </v-col>
       <v-col v-else class="d-flex justify-end">
-        <nav-burger @openDrawer="(val) => (drawer = val)" />
+        <!-- burger icon -->
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-col>
     </v-app-bar>
-    <nav-drawer v-show="!isMobile || drawer" :isMobile="isMobile"/>
+    <nav-drawer v-show="!isMobile || drawer" :is-mobile="isMobile" />
     <v-main>
       <v-container>
         <nuxt />
@@ -39,7 +40,7 @@ export default class DefaultLayout extends Vue {
 }
 </script>
 <style scoped>
-.appBgColor{
+.appBgColor {
   background: var(--v-appBar-base) !important;
 }
-</stylesscc>
+</style>

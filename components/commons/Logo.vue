@@ -1,6 +1,10 @@
 <template>
   <nuxt-link to="/">
-    <v-row align="center" class="bottomBorder" :class="inNavDrawer ? 'drawerStyle': 'defaultStyle'">
+    <v-row
+      align="center"
+      class="bottomBorder"
+      :class="inNavDrawer ? 'drawerStyle' : 'defaultStyle'"
+    >
       <v-icon class="mr-3" color="var(--v-primary-base)">
         mdi-video-vintage</v-icon
       >
@@ -13,17 +17,16 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class Logo extends Vue {
-  @Prop() inNavDrawer!:boolean
+  @Prop() inNavDrawer!: boolean
 }
 </script>
 <style scoped>
-.drawerStyle{
+.drawerStyle {
   margin: 15px 0 10px 20px;
   width: 112px;
   padding: 0 4px;
-
 }
-.defaultStyle{
+.defaultStyle {
   margin-left: 4px;
   padding: 0 4px;
 }

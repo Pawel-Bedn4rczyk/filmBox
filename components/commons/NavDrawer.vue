@@ -11,7 +11,7 @@
     app
     color="var(--v-appBar-base)"
   >
-    <logo v-if="isMobile" :inNavDrawer="true"/>
+    <logo v-if="isMobile" :in-nav-drawer="true" />
     <v-list nav dense>
       <v-list-item link>
         <v-list-item-icon>
@@ -27,9 +27,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class NavDrawer extends Vue {
-  @Prop() isMobile!:boolean
+  @Prop() isMobile!: boolean
 }
 </script>
-//absolute
-//temporary
-//expand-on-hover na false

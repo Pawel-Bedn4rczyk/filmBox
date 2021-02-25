@@ -15,7 +15,6 @@ module.exports = {
   // add your custom rules here
   rules: {
     'no-console': 'off',
-    useTabs: false,
     camelcase: 'off',
   },
 }
