@@ -2,5 +2,8 @@
   "layout":{
     "switchTheme": "Switch theme",
     "switchLang": "Change language to"
+  },
+  "navDrawer":{
+    "addFilm": "Add new film"
   }
 }

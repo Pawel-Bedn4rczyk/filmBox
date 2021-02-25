@@ -77,6 +77,7 @@ export default {
           success: '#4CAF50',
           warning: '#FB8C00',
           filmContainerbg: '#ffffff',
+          appBar: '#ffffff',
         },
         dark: {
           primary: colors.indigo,
@@ -87,6 +88,7 @@ export default {
           success: '#4CAF50',
           warning: '#FB8C00',
           filmContainerbg: '#1E1E1E',
+          appBar: '#272727',
         },
       },
     },
