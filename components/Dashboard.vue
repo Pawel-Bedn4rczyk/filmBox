@@ -12,11 +12,7 @@
               xl="2"
               class="d-flex flex-column justify-center bottomBorder align-center pa-0 ma-0"
             >
-              {{
-                $i18n.locale === 'pl'
-                  ? arr[0].genre_pl.toUpperCase()
-                  : name.toUpperCase()
-              }}
+              {{ $t(`filmGenre.${arr[0].genre}`).toUpperCase() }}
             </v-col>
           </v-row>
         </v-card-title>

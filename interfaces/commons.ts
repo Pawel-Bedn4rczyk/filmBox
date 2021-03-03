@@ -1,9 +1,10 @@
 export interface Film {
-  name: string
-  year: number
+  title: string
+  year: string
   director?: string
-  genre_pl: string
-  genre_en: string
+  genre: string
+  icon: string
+  rating: number
 }
 
 export interface FilmsByGenre {

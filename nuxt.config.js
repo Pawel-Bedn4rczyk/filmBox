@@ -19,7 +19,7 @@ export default {
   css: ['@/assets/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['@/plugins/axios-accessor.ts'],
+  plugins: ['@/plugins/axios-accessor.ts', '@/plugins/snackbar.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -79,6 +79,7 @@ export default {
           filmContainerbg: '#ffffff',
           appBar: '#ffffff',
           boxTextColor: colors.blue.darken2,
+          menuBg: '#ffffff',
         },
         dark: {
           primary: colors.indigo,
@@ -91,6 +92,7 @@ export default {
           filmContainerbg: '#1E1E1E',
           appBar: '#272727',
           boxTextColor: '#ffffff',
+          menuBg: '#424242',
         },
       },
     },

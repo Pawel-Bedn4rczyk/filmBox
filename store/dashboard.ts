@@ -12,7 +12,7 @@ export default class DashboardStore extends VuexModule {
 
   @Mutation
   setFilms(films: { [key: string]: Film }) {
-    this.films = groupBy(films, 'genre_en')
+    this.films = groupBy(films, 'genre')
   }
 
   @Action({ commit: 'setFilms' })

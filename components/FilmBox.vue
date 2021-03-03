@@ -16,7 +16,7 @@
       <v-card-text class="pt-6 pb-0">
         <v-row align="center" no-gutters class="ma-0">
           <v-col>
-            <h3>{{ film.name }}</h3>
+            <h3>{{ film.title }}</h3>
             <span>{{ film.year }}</span>
             <p class="caption mb-0">{{ film.director }}</p>
             <v-rating

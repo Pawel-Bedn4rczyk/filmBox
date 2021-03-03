@@ -1,9 +1,47 @@
 {
+  "messages":{
+    "successAdd": "Succesfully added",
+    "errorAdd": "Error when adding",
+    "reqField": "Field is required",
+    "fillAllFields": "Fill all required fields"
+  },
+  "buttons":{
+    "save": "Save"
+  },
   "layout":{
     "switchTheme": "Switch theme",
     "switchLang": "Change language to"
   },
   "navDrawer":{
     "addFilm": "Add new film"
+  },
+  "filmGenre":{
+    "comedy": "Comedy",
+    "drama": "Drama",
+    "scifi": "Science-fiction",
+    "horror": "Horror",
+    "romance": "Romance",
+    "action": "Action",
+    "thriller": "Thriller",
+    "crime": "Crime",
+    "animation": "Animation",
+    "adventure": "Adventure",
+    "fantasy": "Fantasy",
+    "war": "War",
+    "history": "History",
+    "sport": "Sport",
+    "biography": "Biography"
+  },
+  "filmDialog":{
+    "addFilm": "New film",
+    "editFilm": "Edit film",
+    "form":{
+      "title": "Title",
+      "year": "Year",
+      "director": "Director",
+      "genre": "Genre",
+      "icon": "Icon",
+      "rating": "Rating"
+    }
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
-    <v-app-bar app clipped-left class="appBgColor">
+    <snackbar />
+    <v-app-bar app clipped-left class="appBgColor" elevation="1">
       <logo :in-nav-drawer="false" />
       <v-spacer />
       <v-col
@@ -32,8 +33,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import Snackbar from '~/components/commons/Snackbar.vue'
 
 @Component({
+  components: { Snackbar },
   name: 'DefaultLayout',
 })
 export default class DefaultLayout extends Vue {

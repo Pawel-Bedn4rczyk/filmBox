@@ -1,9 +1,47 @@
 {
+  "messages":{
+    "successAdd": "Pomyślnie dodano",
+    "errorAdd": "Błąd przy dodawaniu",
+    "reqField": "Pole wymagane",
+    "fillAllFields": "Uzupełnij wszystkie wymagane pola"
+  },
+  "buttons":{
+    "save": "Zapisz"
+  },
   "layout":{
     "switchTheme": "Zmień wygląd",
     "switchLang": "Zmień język na"
   },
   "navDrawer":{
     "addFilm": "Dodaj nowy film"
+  },
+  "filmGenre":{
+    "comedy": "Komedia",
+    "drama": "Dramat",
+    "scifi": "Science-fiction",
+    "horror": "Horror",
+    "romance": "Romans",
+    "action": "Akcja",
+    "thriller": "Thriller",
+    "crime": "Kryminał",
+    "animation": "Animacja",
+    "adventure": "Przygodowy",
+    "fantasy": "Fantastyczny",
+    "war": "Wojenny",
+    "history": "Historyczny",
+    "sport": "Sportowy",
+    "biography": "Biograficzny"
+  },
+  "filmDialog":{
+    "addFilm": "Nowy film",
+    "editFilm": "Edytuj film",
+    "form":{
+      "title": "Tytuł",
+      "year": "Rok produkcji",
+      "director": "Reżyser",
+      "genre": "Gatunek",
+      "icon": "Ikona",
+      "rating": "Ocena filmu"
+    }
   }
 }

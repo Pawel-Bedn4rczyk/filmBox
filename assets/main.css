@@ -2,12 +2,24 @@
   border: 2px solid var(--v-primary-base) !important;
 }
 
+.primaryBg {
+  background-color: var(--v-primary-base) !important;
+}
+
+.menuBg {
+  background-color: var(--v-primary-menuBg) !important;
+}
+
 .bottomBorder{
   border-bottom: 2px solid var(--v-primary-base) !important;
 }
 
 .v-text-field > .v-input__control > .v-input__slot:before {
   border-color: var(--v-primary-base) !important;
+}
+
+.v-input >>> .v-icon {
+  color: var(--v-primary-base) !important;
 }
 
 .primaryColor{
