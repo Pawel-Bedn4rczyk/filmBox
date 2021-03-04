@@ -1,4 +1,4 @@
-export enum FilmGenre {
+export enum FilmGenreEnum {
   COMEDY = 'comedy',
   DRAMA = 'drama',
   SCIFI = 'scifi',
@@ -14,4 +14,11 @@ export enum FilmGenre {
   HISTORY = 'history',
   SPORT = 'sport',
   BIOGRAPHY = 'biography',
+}
+
+export enum SnackbarTypes {
+  SUCCESS = 'success',
+  INFO = 'info',
+  ERROR = 'error',
+  PRIMARY = 'primary'
 }

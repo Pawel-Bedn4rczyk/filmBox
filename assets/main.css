@@ -18,10 +18,6 @@
   border-color: var(--v-primary-base) !important;
 }
 
-.v-input >>> .v-icon {
-  color: var(--v-primary-base) !important;
-}
-
 .primaryColor{
   color: var(--v-primary-base) !important;
 }

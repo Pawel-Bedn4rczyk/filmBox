@@ -14,7 +14,11 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
+    'import/no-mutable-exports': 'off',
+    'nuxt/no-cjs-in-config': 'off',
+    'require-await': 'off',
+    'no-unreachable': 'off',
     'no-console': 'off',
-    camelcase: 'off',
+    camelcase: { 'properties': 'never' },
   },
 }

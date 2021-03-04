@@ -1,16 +1,31 @@
-import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
+import {
+  createModule,
+  mutation,
+  extractVuexModule,
+} from 'vuex-class-component'
+import { Snackbar } from '@/interfaces/commons.ts'
+import { SnackbarTypes } from '@/enums/enums.ts'
+import { TranslateResult, LocaleMessage } from "vue-i18n";
 
-@Module({
-  stateFactory: true,
-  namespaced: true,
-})
-export default class SnackbarStore extends VuexModule {
-  content = ''
-  color = ''
+export class SnackbarStore extends createModule ({
+  namespaced: 'snackbar',
+  target: 'nuxt',
+}){
+  private _snackbar:Snackbar = { type: SnackbarTypes.SUCCESS, text: ''}
+  public $watch: (arg: string, func: () => void) => void = () => {}
 
-  @Mutation
-  showMessage(payload: any) {
-    this.content = payload.content
-    this.color = payload.color
+  get text():TranslateResult | LocaleMessage {
+    return this._snackbar.text
+  }
+
+  get type():SnackbarTypes {
+    return this._snackbar.type
+  }
+
+  @mutation
+  setSnack(snackbar:Snackbar):void {
+    this._snackbar = snackbar
   }
 }
+const extractedVuexModule = extractVuexModule(SnackbarStore)
+export default extractedVuexModule.snackbar

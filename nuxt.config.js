@@ -1,6 +1,5 @@
 import webpack from 'webpack'
 import colors from 'vuetify/lib/util/colors'
-import i18n from './config/i18n'
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -19,11 +18,10 @@ export default {
   css: ['@/assets/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['@/plugins/axios-accessor.ts', '@/plugins/snackbar.js'],
+  plugins: ['@/plugins/utils-accessor.ts'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
-
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
@@ -47,14 +45,17 @@ export default {
         code: 'en',
         nameEn: 'English',
         namePl: 'Angielski',
+        file: 'en.json'
       },
       {
         code: 'pl',
         nameEn: 'Polish',
         namePl: 'Polski',
+        file: 'pl.json'
       },
     ],
-    vueI18n: i18n,
+    langDir: 'lang/',
+    lazy: true,
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

@@ -89,16 +89,16 @@
                   class="menuBg"
                 >
                   <v-col
-                    v-for="item in items"
-                    :key="item"
+                    v-for="icon in genreIcons"
+                    :key="icon"
                     cols="3"
                     class="d-flex justify-space-around"
                     style="height: 1%"
                   >
                     <v-icon
                       style="cursor: pointer"
-                      @click="filmData.icon = item"
-                      >{{ item }}</v-icon
+                      @click="filmData.icon = icon"
+                      >{{ icon }}</v-icon
                     >
                   </v-col>
                 </v-row>
@@ -138,18 +138,28 @@ import {
   Watch,
   Ref,
 } from 'nuxt-property-decorator'
-import { Film } from '@/interfaces/commons.ts'
+import { Film, FilmsGenre } from '@/interfaces/commons'
 import { TranslateResult } from 'vue-i18n'
-import { FilmGenre } from '@/enums/enums'
-import { $axios } from '~/utils/api'
+import { SnackbarTypes } from '@/enums/enums'
+import { mapGetters } from 'vuex'
+import { $vxm } from '@/utils/api'
 
-@Component
+@Component({
+  computed: {
+    ...mapGetters({
+      filmsGenre: 'dashboard/filmsGenre',
+      genreIcons: 'dashboard/genreIcons',
+    }),
+  },
+})
 export default class AddEditDialog extends Vue {
   @VModel() model!: boolean
   @Ref('picker') picker!: HTMLFormElement
   @Ref('form') form!: HTMLFormElement
   @Prop({ required: false, default: false }) addNew?: boolean
 
+  filmsGenre!: Array<FilmsGenre>
+  genreIcons!: string[]
   menuDate = false
   maxDate = new Date().getFullYear().toString() + '-Nan-Nan'
   reqField = (v: string): TranslateResult | boolean =>
@@ -163,21 +173,6 @@ export default class AddEditDialog extends Vue {
     icon: '',
     rating: NaN,
   }
-
-  items = [
-    'mdi-filmstrip',
-    'mdi-filmstrip-box-multiple',
-    'mdi-movie-roll',
-    'mdi-movie',
-    'mdi-movie-open-play',
-    'mdi-movie-open-star',
-    'mdi-movie-star',
-    'mdi-heart',
-    'mdi-basketball',
-    'mdi-drama-masks',
-    'mdi-delta',
-    'mdi-animation-play',
-  ]
 
   @Watch('menuDate')
   onMenuChange(val: boolean) {
@@ -202,41 +197,18 @@ export default class AddEditDialog extends Vue {
     this.filmData.year = newValue.substring(0, 4)
   }
 
-  get filmsGenre() {
-    const _arr: Array<{ text: TranslateResult }> = []
-    Object.entries(FilmGenre).map((arr) => {
-      const obj = {
-        text: this.$t(`filmGenre.${arr[1]}`),
-        value: arr[1],
-      }
-      _arr.push(obj)
-    })
-    return _arr
-  }
-
-  async save(): Promise<void> {
+  save(): void {
     if (this.form.validate()) {
-      await $axios
-        .post(`${$axios.defaults.baseURL}films.json`, this.filmData)
-        .then(() =>
-          (this as any).$snackbar.showMessage({
-            content: this.$t('messages.successAdd'),
-            color: 'primary',
-          })
-        )
-        .catch(() =>
-          (this as any).$snackbar.showMessage({
-            content: this.$t('messages.errorAdd'),
-            color: 'error',
-          })
-        )
-      this.$emit('input', false)
-      this.$store.dispatch('dashboard/getFilmsData')
-    } else
-      (this as any).$snackbar.showMessage({
-        content: this.$t('messages.fillAllFields'),
-        color: 'error',
+      $vxm.dashboard
+        .dispatchAddFilm(this.filmData)
+        .then(() => $vxm.dashboard.dispatchFilms())
+    } else {
+      $vxm.snackbar.setSnack({
+        text: this.$t('messages.fillAllFields'),
+        type: SnackbarTypes.ERROR,
       })
+    }
+    this.$emit('input', false)
   }
 }
 </script>

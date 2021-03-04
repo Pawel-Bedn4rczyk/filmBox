@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Dashboard :films="films" />
+    <Dashboard :films="allfilms" />
   </div>
 </template>
 
@@ -8,17 +8,18 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { FilmsByGenre } from '@/interfaces/commons.ts'
 import { mapGetters } from 'vuex'
+import { $vxm } from '~/utils/api'
 
 @Component({
   computed: {
-    ...mapGetters('dashboard', { films: 'getFilms' }),
+    ...mapGetters('dashboard', { allfilms: 'films' }),
   },
 })
 export default class DashboardPage extends Vue {
-  films!: FilmsByGenre
+  allfilms!: FilmsByGenre
 
   mounted() {
-    this.$store.dispatch('dashboard/getFilmsData')
+    $vxm.dashboard.dispatchFilms()
   }
 }
 </script>
