@@ -1,21 +1,25 @@
 {
-  "messages":{
+  "locales": {
+    "english": "English",
+    "polish": "Polish"
+  },
+  "messages": {
     "successAdd": "Succesfully added",
     "errorAdd": "Error when adding",
     "reqField": "Field is required",
     "fillAllFields": "Fill all required fields"
   },
-  "buttons":{
+  "buttons": {
     "save": "Save"
   },
-  "layout":{
+  "layout": {
     "switchTheme": "Switch theme",
     "switchLang": "Change language to"
   },
-  "navDrawer":{
+  "navDrawer": {
     "addFilm": "Add new film"
   },
-  "filmGenre":{
+  "filmGenre": {
     "comedy": "Comedy",
     "drama": "Drama",
     "scifi": "Science-fiction",
@@ -32,10 +36,10 @@
     "sport": "Sport",
     "biography": "Biography"
   },
-  "filmDialog":{
+  "filmDialog": {
     "addFilm": "New film",
     "editFilm": "Edit film",
-    "form":{
+    "form": {
       "title": "Title",
       "year": "Year",
       "director": "Director",

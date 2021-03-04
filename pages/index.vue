@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { FilmsByGenre } from '@/interfaces/commons.ts'
+import { FilmsByGenre } from '@/interfaces/commons'
 import { mapGetters } from 'vuex'
 import { $vxm } from '~/utils/api'
 

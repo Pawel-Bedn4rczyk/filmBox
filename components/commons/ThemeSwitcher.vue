@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip bottom>
+  <v-tooltip :bottom="tooltipBottom" :top="!tooltipBottom">
     <template v-slot:activator="{ on }">
       <v-btn icon class="primaryColor" v-on="on" @click="switchTheme">
         <v-icon> {{ icon }} </v-icon>
@@ -10,10 +10,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class ThemeSwitcher extends Vue {
+  @Prop({ required: false, default: true }) tooltipBottom?: boolean
   get icon(): string {
     return this.$vuetify.theme.dark ? 'mdi-weather-sunny' : 'mdi-weather-night'
   }

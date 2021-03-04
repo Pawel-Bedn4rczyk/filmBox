@@ -10,7 +10,7 @@
         sm="4"
         md="3"
         lg="2"
-        class="d-flex align-center"
+        class="d-flex align-center justify-end"
       >
         <switch-lang />
         <theme-switcher />

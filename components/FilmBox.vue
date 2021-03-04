@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Film } from '@/interfaces/commons.ts'
+import { Film } from '@/interfaces/commons'
 import themeMixin from '@/mixins/themeMixin'
 
 @Component({

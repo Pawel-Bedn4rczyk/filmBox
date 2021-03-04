@@ -42,16 +42,16 @@ export default {
     strategy: 'no_prefix',
     locales: [
       {
-        code: 'en',
-        nameEn: 'English',
-        namePl: 'Angielski',
-        file: 'en.json'
+        code: 'pl',
+        name: 'Polish',
+        iso: 'pl-Pl',
+        file: 'pl.json',
       },
       {
-        code: 'pl',
-        nameEn: 'Polish',
-        namePl: 'Polski',
-        file: 'pl.json'
+        code: 'en',
+        name: 'English',
+        iso: 'en-US',
+        file: 'en.json',
       },
     ],
     langDir: 'lang/',

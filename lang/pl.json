@@ -1,4 +1,8 @@
 {
+  "locales":{
+    "english":"Angielski",
+    "polish":"Polski"
+  },
   "messages":{
     "successAdd": "Pomyślnie dodano",
     "errorAdd": "Błąd przy dodawaniu",

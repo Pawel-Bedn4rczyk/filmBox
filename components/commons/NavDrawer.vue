@@ -39,11 +39,11 @@
             align="start"
             justify="space-around"
           >
-            <v-col cols="7">
+            <v-col cols="10">
               <switch-lang />
             </v-col>
             <v-col cols="2">
-              <theme-switcher />
+              <theme-switcher :tooltipBottom="false" />
             </v-col>
           </v-row>
         </div>
