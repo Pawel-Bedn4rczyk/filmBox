@@ -202,13 +202,13 @@ export default class AddEditDialog extends Vue {
       $vxm.dashboard
         .dispatchAddFilm(this.filmData)
         .then(() => $vxm.dashboard.dispatchFilms())
+      this.$emit('input', false)
     } else {
       $vxm.snackbar.setSnack({
         text: this.$t('messages.fillAllFields'),
         type: SnackbarTypes.ERROR,
       })
     }
-    this.$emit('input', false)
   }
 }
 </script>
