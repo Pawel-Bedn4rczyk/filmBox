@@ -1,35 +1,47 @@
 <template>
   <div>
-    <v-card
-      style="position: relative; height: 130px; cursor: pointer"
-      class="my-5 mt-sm-10 primaryBorder d-flex flex-column justify-center"
-      tile
-    >
-      <div
-        class="iconContainer d-flex justify-center align-center"
-        :class="darkThemeIsOn ? 'primaryBorder' : ''"
+    <v-hover v-slot="{ hover }">
+      <v-card
+        style="position: relative; height: 130px; cursor: pointer"
+        class="my-5 mt-sm-10 primaryBorder d-flex flex-column justify-center"
+        tile
       >
-        <v-icon class="primaryColor" large>{{
-          film.icon || 'mdi-video-vintage'
-        }}</v-icon>
-      </div>
-      <v-card-text class="pt-6 pb-0">
-        <v-row align="center" no-gutters class="ma-0">
-          <v-col>
-            <h3>{{ film.title }}</h3>
-            <span>{{ film.year }}</span>
-            <p class="caption mb-0">{{ film.director }}</p>
-            <v-rating
-              v-model="film.rating"
-              background-color="var(--v-primary-base)"
-              class="primaryColor"
-              half-increments
-              readonly
-            ></v-rating>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
+        <div
+          class="iconContainer d-flex justify-center align-center"
+          :class="darkThemeIsOn ? 'primaryBorder' : ''"
+        >
+          <v-icon class="primaryColor" large>{{
+            film.icon || 'mdi-video-vintage'
+          }}</v-icon>
+        </div>
+        <v-card-text class="pt-6 pb-0">
+          <transition name="fade">
+            <div v-if="hover" class="cardOptions">
+              <v-btn color="primary" small icon tile class="mb-1 mt-2 optBtn">
+                <v-icon>{{ 'mdi-pencil' }}</v-icon>
+              </v-btn>
+              <v-btn color="primary" small icon tile class="mt-1 mb-2 optBtn">
+                <v-icon>{{ 'mdi-close' }}</v-icon>
+              </v-btn>
+            </div>
+          </transition>
+          <v-row align="center" no-gutters class="ma-0">
+            <v-col>
+              <h3>{{ film.title }}</h3>
+              <span>{{ film.year }}</span>
+              <p class="caption mb-0">{{ film.director }}</p>
+              <v-rating
+                v-model="film.rating"
+                background-color="var(--v-primary-base)"
+                class="primaryColor"
+                half-increments
+                readonly
+              ></v-rating>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-hover>
   </div>
 </template>
 
@@ -72,5 +84,21 @@ export default class FilmBox extends Vue {
 .v-card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 0.3rem var(--v-primary-base);
+}
+
+.cardOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+}
+
+.optBtn:hover {
+  color: var(--v-secondary-base) !important;
 }
 </style>

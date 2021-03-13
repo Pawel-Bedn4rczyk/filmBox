@@ -71,7 +71,7 @@ export default {
       themes: {
         light: {
           primary: colors.blue.darken2,
-          secondary: '#424242',
+          secondary: colors.blue.lighten2, //buttons hover
           accent: '#82B1FF',
           error: '#FF5252',
           info: '#2196F3',
@@ -84,7 +84,7 @@ export default {
         },
         dark: {
           primary: colors.indigo,
-          secondary: '#424242',
+          secondary: colors.indigo.lighten2,
           accent: '#FF4081',
           error: '#FF5252',
           info: '#2196F3',

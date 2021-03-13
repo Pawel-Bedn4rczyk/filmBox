@@ -10,7 +10,7 @@
   background-color: var(--v-primary-menuBg) !important;
 }
 
-.bottomBorder{
+.bottomBorder {
   border-bottom: 2px solid var(--v-primary-base) !important;
 }
 
@@ -18,11 +18,21 @@
   border-color: var(--v-primary-base) !important;
 }
 
-.primaryColor{
+.primaryColor {
   color: var(--v-primary-base) !important;
 }
 
-a{
-  text-decoration: none ;
+a {
+  text-decoration: none;
   color: inherit !important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
