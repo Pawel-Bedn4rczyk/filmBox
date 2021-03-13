@@ -20,6 +20,8 @@ export class DashboardStore extends VuexModule {
 
   @action
   public async dispatchFilms(): Promise<void> {
+    console.log('download');
+
     try {
       const data = await $axios.$get(`${$axios.defaults.baseURL}films.json`)
       this.commitFilms(data)
