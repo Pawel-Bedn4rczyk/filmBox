@@ -1,6 +1,6 @@
-import { TranslateResult, LocaleMessage } from "vue-i18n";
-import { SnackbarTypes } from "@/enums/enums";
-import { FilmGenreEnum } from "@/enums/enums";
+import { TranslateResult, LocaleMessage } from 'vue-i18n'
+import { SnackbarTypes } from '@/enums/enums'
+import { FilmGenreEnum } from '@/enums/enums'
 
 export interface Snackbar {
   text: TranslateResult | LocaleMessage
@@ -8,6 +8,7 @@ export interface Snackbar {
 }
 
 export interface Film {
+  id?: string
   title: string
   year: string
   director?: string
@@ -17,8 +18,8 @@ export interface Film {
 }
 
 export interface FilmsGenre {
-  text: TranslateResult,
-  value:FilmGenreEnum
+  text: TranslateResult
+  value: FilmGenreEnum
 }
 
 export interface FilmsByGenre {

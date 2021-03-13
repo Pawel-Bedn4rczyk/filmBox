@@ -175,7 +175,8 @@ export default class AddEditDialog extends Vue {
   @VModel() model!: boolean
   @Ref('picker') picker!: HTMLFormElement
   @Ref('form') form!: HTMLFormElement
-  @Prop({ required: false, default: false }) addNew?: boolean
+  @Prop({ default: false }) addNew?: boolean
+  @Prop() filmId?: Film['id']
 
   filmsGenre!: Array<FilmsGenre>
   genreIcons!: string[]
@@ -238,6 +239,11 @@ export default class AddEditDialog extends Vue {
   @Watch('menuDate')
   onMenuChange(val: boolean) {
     val && this.$nextTick(() => (this.picker.activePicker = 'YEAR'))
+  }
+  created() {
+    if (this.filmId) {
+      $vxm.dashboard.dispatchOneFilm(this.filmId)
+    }
   }
 }
 </script>

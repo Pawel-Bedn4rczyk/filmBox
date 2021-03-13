@@ -17,7 +17,14 @@
         <v-card-text class="pt-6 pb-0">
           <transition name="fade">
             <div v-if="hover" class="cardOptions">
-              <v-btn color="primary" small icon tile class="mb-1 mt-2 optBtn">
+              <v-btn
+                color="primary"
+                small
+                icon
+                tile
+                class="mb-1 mt-2 optBtn"
+                @click="addEditDialog = true"
+              >
                 <v-icon>{{ 'mdi-pencil' }}</v-icon>
               </v-btn>
               <v-btn color="primary" small icon tile class="mt-1 mb-2 optBtn">
@@ -42,6 +49,11 @@
         </v-card-text>
       </v-card>
     </v-hover>
+    <add-edit-dialog
+      :filmId="film.id"
+      v-if="addEditDialog"
+      v-model="addEditDialog"
+    />
   </div>
 </template>
 
@@ -55,6 +67,8 @@ import themeMixin from '@/mixins/themeMixin'
 })
 export default class FilmBox extends Vue {
   @Prop({ required: true }) film!: Film
+
+  addEditDialog = false
 }
 </script>
 

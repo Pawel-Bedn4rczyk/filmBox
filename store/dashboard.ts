@@ -17,12 +17,33 @@ const VuexModule = createModule({
 })
 export class DashboardStore extends VuexModule {
   allfilms: FilmsByGenre = {}
+  oneFilm: Film = {
+    title: '',
+    year: '',
+    director: '',
+    genre: '',
+    icon: '',
+    rating: NaN,
+  }
 
   @action
   public async dispatchFilms(): Promise<void> {
     try {
       const data = await $axios.$get(`${$axios.defaults.baseURL}films.json`)
       this.commitFilms(data)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  @action
+  public async dispatchOneFilm(payload: Film['id']): Promise<void> {
+    console.log(payload)
+    try {
+      const data = await $axios.get(`${$axios.defaults.baseURL}films.json`)
+      console.log(data)
+
+      // this.commitOneFilm(data)
     } catch (e) {
       throw new Error(e)
     }
@@ -47,7 +68,16 @@ export class DashboardStore extends VuexModule {
 
   @mutation
   private commitFilms(films: { [key: string]: Film }): void {
-    this.allfilms = groupBy(films, 'genre')
+    //add id
+    const arr = Object.entries(films).map((el) => {
+      let obj = {
+        ...el[1],
+        id: el[0],
+      }
+      return obj
+    })
+    // sort by genre
+    this.allfilms = groupBy(arr, 'genre')
   }
 
   public get films(): FilmsByGenre {
