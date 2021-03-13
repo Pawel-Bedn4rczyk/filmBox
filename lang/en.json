@@ -7,7 +7,9 @@
     "successAdd": "Succesfully added",
     "errorAdd": "Error when adding",
     "reqField": "Field is required",
-    "fillAllFields": "Fill all required fields"
+    "maxLength": "The allowed number of characters is : {n}",
+    "fillAllFields": "Fill all required fields",
+    "correctFields": "Correct highlighted fields"
   },
   "buttons": {
     "save": "Save"

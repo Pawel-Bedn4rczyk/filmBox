@@ -14,7 +14,8 @@
                 v-model="filmData.title"
                 class="text--primary"
                 :label="$t('filmDialog.form.title')"
-                :rules="[reqField]"
+                :rules="[rules.reqField, rules.maxEqual]"
+                counter="30"
               >
               </v-text-field>
             </v-col>
@@ -22,7 +23,8 @@
               <v-text-field
                 v-model="filmData.director"
                 :label="$t('filmDialog.form.director')"
-                :rules="[reqField]"
+                :rules="[rules.reqField, rules.maxEqual]"
+                counter="30"
               >
               </v-text-field>
             </v-col>
@@ -45,7 +47,7 @@
                     prepend-icon="mdi-calendar"
                     readonly
                     class="pointerField"
-                    :rules="[reqField]"
+                    :rules="[rules.reqField]"
                     @click:prepend="menuDate = true"
                     v-on="on"
                   ></v-text-field>
@@ -65,7 +67,7 @@
               <v-select
                 v-model="filmData.genre"
                 :label="$t('filmDialog.form.genre')"
-                :rules="[reqField]"
+                :rules="[rules.reqField]"
                 :items="filmsGenre"
               >
               </v-select>
@@ -162,8 +164,12 @@ export default class AddEditDialog extends Vue {
   genreIcons!: string[]
   menuDate = false
   maxDate = new Date().getFullYear().toString() + '-Nan-Nan'
-  reqField = (v: string): TranslateResult | boolean =>
-    !!v || this.$t('messages.reqField')
+  rules = {
+    reqField: (v: string): TranslateResult | boolean =>
+      !!v || this.$t('messages.reqField'),
+    maxEqual: (v: string): TranslateResult | boolean =>
+      v.length <= 30 || this.$tc('messages.maxLength', 30),
+  }
 
   filmData: Film = {
     title: '',
@@ -174,15 +180,16 @@ export default class AddEditDialog extends Vue {
     rating: NaN,
   }
 
-  @Watch('menuDate')
-  onMenuChange(val: boolean) {
-    val && this.$nextTick(() => (this.picker.activePicker = 'YEAR'))
-  }
-
   get title(): TranslateResult {
     return this.addNew
       ? this.$t('filmDialog.addFilm')
       : this.$t('filmDialog.editFilm')
+  }
+
+  get snackMessage(): TranslateResult {
+    return Object.values(this.filmData).every((x) => !!x)
+      ? this.$t('messages.correctFields')
+      : this.$t('messages.fillAllFields')
   }
 
   get icon(): string {
@@ -205,10 +212,15 @@ export default class AddEditDialog extends Vue {
       this.$emit('input', false)
     } else {
       $vxm.snackbar.setSnack({
-        text: this.$t('messages.fillAllFields'),
+        text: this.snackMessage,
         type: SnackbarTypes.ERROR,
       })
     }
+  }
+
+  @Watch('menuDate')
+  onMenuChange(val: boolean) {
+    val && this.$nextTick(() => (this.picker.activePicker = 'YEAR'))
   }
 }
 </script>

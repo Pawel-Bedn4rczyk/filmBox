@@ -7,7 +7,9 @@
     "successAdd": "Pomyślnie dodano",
     "errorAdd": "Błąd przy dodawaniu",
     "reqField": "Pole wymagane",
-    "fillAllFields": "Uzupełnij wszystkie wymagane pola"
+    "maxLength": "Dopuszczalna ilość znaków to : {n}",
+    "fillAllFields": "Uzupełnij wszystkie wymagane pola",
+    "correctFields": "Popraw podświetlone pola"
   },
   "buttons":{
     "save": "Zapisz"
