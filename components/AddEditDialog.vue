@@ -76,7 +76,7 @@
             <v-col cols="4" class="d-flex justify-center align-center">
               <v-menu offset-y>
                 <template v-slot:activator="{ on }">
-                  <v-btn color="primary" outlined v-on="on">
+                  <v-btn color="primary" outlined v-on="on" tile>
                     {{ $t('filmDialog.form.icon') }}
                     <v-icon v-if="filmData.icon" class="ml-2">{{
                       filmData.icon
@@ -122,7 +122,7 @@
         </v-form>
         <v-card-actions>
           <v-row justify="end" align="center">
-            <v-btn color="primary" @click="save">
+            <v-btn color="primary" @click="save" tile>
               {{ $t('buttons.save') }}
             </v-btn>
           </v-row>
