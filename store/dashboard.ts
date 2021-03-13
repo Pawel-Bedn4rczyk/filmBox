@@ -7,7 +7,7 @@ import {
 import { FilmsByGenre, Film, FilmsGenre } from '@/interfaces/commons.ts'
 import { groupBy } from 'lodash'
 import { $axios } from '~/utils/api'
-import { $vxm, $i18n } from "@/utils/api";
+import { $vxm, $i18n } from '@/utils/api'
 import { FilmGenreEnum, SnackbarTypes } from '@/enums/enums'
 
 const VuexModule = createModule({
@@ -20,8 +20,6 @@ export class DashboardStore extends VuexModule {
 
   @action
   public async dispatchFilms(): Promise<void> {
-    console.log('download');
-
     try {
       const data = await $axios.$get(`${$axios.defaults.baseURL}films.json`)
       this.commitFilms(data)
@@ -31,32 +29,32 @@ export class DashboardStore extends VuexModule {
   }
 
   @action
-  public async dispatchAddFilm(film:Film): Promise<void> {
+  public async dispatchAddFilm(film: Film): Promise<void> {
     try {
       await $axios.post(`${$axios.defaults.baseURL}films.json`, film)
       $vxm.snackbar.setSnack({
         text: $i18n.t('messages.successAdd'),
-        type: SnackbarTypes.PRIMARY
+        type: SnackbarTypes.PRIMARY,
       })
     } catch (e) {
       $vxm.snackbar.setSnack({
         text: $i18n.t('messages.errorAdd'),
-        type: SnackbarTypes.ERROR
+        type: SnackbarTypes.ERROR,
       })
       throw new Error(e)
     }
   }
 
   @mutation
-  private commitFilms(films: { [key: string]: Film }):void {
+  private commitFilms(films: { [key: string]: Film }): void {
     this.allfilms = groupBy(films, 'genre')
   }
 
-  public get films():FilmsByGenre {
+  public get films(): FilmsByGenre {
     return this.allfilms
   }
 
-  public get genreIcons():string[] {
+  public get genreIcons(): string[] {
     return [
       'mdi-filmstrip',
       'mdi-filmstrip-box-multiple',
@@ -73,7 +71,7 @@ export class DashboardStore extends VuexModule {
     ]
   }
 
-  public get filmsGenre():Array<FilmsGenre> {
+  public get filmsGenre(): Array<FilmsGenre> {
     const _arr: Array<FilmsGenre> = []
     Object.entries(FilmGenreEnum).map((arr) => {
       const obj = {
