@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="model" width="600px">
+  <v-dialog v-model="model" width="400px">
     <v-card>
       <v-card-title class="primaryBg white--text">
         {{ title }}
@@ -8,8 +8,8 @@
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
-          <v-row class="ma-0">
-            <v-col cols="6">
+          <v-row>
+            <v-col>
               <v-text-field
                 v-model="filmData.title"
                 class="text--primary"
@@ -19,7 +19,9 @@
               >
               </v-text-field>
             </v-col>
-            <v-col cols="6">
+          </v-row>
+          <v-row>
+            <v-col>
               <v-text-field
                 v-model="filmData.director"
                 :label="$t('filmDialog.form.director')"
@@ -29,9 +31,21 @@
               </v-text-field>
             </v-col>
           </v-row>
-          <v-row class="ma-0">
+          <v-row>
+            <!-- Genre -->
+            <v-col>
+              <v-select
+                v-model="filmData.genre"
+                :label="$t('filmDialog.form.genre')"
+                :rules="[rules.reqField]"
+                :items="filmsGenre"
+              >
+              </v-select>
+            </v-col>
+          </v-row>
+          <v-row>
             <!-- Date -->
-            <v-col cols="4">
+            <v-col>
               <v-menu
                 v-model="menuDate"
                 :close-on-content-click="true"
@@ -62,18 +76,33 @@
                 </v-date-picker>
               </v-menu>
             </v-col>
-            <!-- Genre -->
-            <v-col cols="4">
-              <v-select
-                v-model="filmData.genre"
-                :label="$t('filmDialog.form.genre')"
-                :rules="[rules.reqField]"
-                :items="filmsGenre"
-              >
-              </v-select>
+          </v-row>
+          <v-row justify="start" align="end">
+            <!-- Rating -->
+            <v-col
+              cols="12"
+              sm=""
+              :class="
+                $vuetify.breakpoint.smAndUp
+                  ? ''
+                  : 'd-flex flex-column align-center'
+              "
+            >
+              <span>{{ $t('filmDialog.form.rating') }}</span>
+              <v-rating
+                v-model="filmData.rating"
+                background-color="var(--v-primary-base)"
+                class="primaryColor"
+                half-increments
+                hover
+              ></v-rating>
             </v-col>
             <!-- Icon -->
-            <v-col cols="4" class="d-flex justify-center align-center">
+            <v-col
+              cols="12"
+              sm=""
+              class="d-flex justify-center justify-sm-start mb-2"
+            >
               <v-menu offset-y>
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" outlined v-on="on" tile>
@@ -107,20 +136,8 @@
               </v-menu>
             </v-col>
           </v-row>
-          <v-row justify="center" align="center">
-            <v-col cols="6">
-              <span>{{ $t('filmDialog.form.rating') }}</span>
-              <v-rating
-                v-model="filmData.rating"
-                background-color="var(--v-primary-base)"
-                class="primaryColor"
-                half-increments
-                hover
-              ></v-rating>
-            </v-col>
-          </v-row>
         </v-form>
-        <v-card-actions>
+        <v-card-actions class="mt-5">
           <v-row justify="end" align="center">
             <v-btn color="primary" @click="save" tile>
               {{ $t('buttons.save') }}
