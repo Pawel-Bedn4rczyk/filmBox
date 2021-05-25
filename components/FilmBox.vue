@@ -53,11 +53,7 @@
       v-if="addEditDialog"
       v-model="addEditDialog"
     />
-    <confirm-dialog
-      :film="film"
-      v-if="confirmDialog"
-      v-model="confirmDialog"
-    />
+    <confirm-dialog :film="film" v-if="confirmDialog" v-model="confirmDialog" />
   </div>
 </template>
 
@@ -116,7 +112,7 @@ export default class FilmBox extends Vue {
 }
 
 .v-card:hover {
-  transform: scale(1.1);
+  transform: scale(1.03);
   box-shadow: 0 0 0.3rem var(--v-primary-base);
 }
 

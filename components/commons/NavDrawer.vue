@@ -57,11 +57,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
+import commonMixin from '@/mixins'
 
-@Component
+@Component({
+  mixins:[commonMixin]
+})
 export default class NavDrawer extends Vue {
-  @Prop() isMobile!: boolean
   addEditDialog = false
 }
 </script>

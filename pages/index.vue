@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <Dashboard :films="allfilms" />
-  </div>
+  <Dashboard :films="allfilms" />
 </template>
 
 <script lang="ts">
