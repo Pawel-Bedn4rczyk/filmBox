@@ -4,15 +4,17 @@
     "polish": "Polish"
   },
   "messages": {
-    "successAdd": "Succesfully added",
-    "errorAdd": "Error when adding",
+    "successDone": "Successfully executed",
+    "error": "Error during action execution",
     "reqField": "Field is required",
     "maxLength": "The allowed number of characters is : {n}",
     "fillAllFields": "Fill all required fields",
     "correctFields": "Correct highlighted fields"
   },
   "buttons": {
-    "save": "Save"
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Usuń"
   },
   "layout": {
     "switchTheme": "Switch theme",
@@ -41,6 +43,8 @@
   "filmDialog": {
     "addFilm": "New film",
     "editFilm": "Edit film",
+    "deleteTitle": "Removal",
+    "deleteConfirm": "Are you sure you want to delete film{film} ?",
     "form": {
       "title": "Title",
       "year": "Year",

@@ -17,19 +17,18 @@
         <v-card-text class="pt-6 pb-0">
           <transition name="fade">
             <div v-if="hover" class="cardOptions">
-              <v-btn
-                color="primary"
-                small
-                icon
-                tile
-                class="mb-1 mt-2 optBtn"
-                @click="addEditDialog = true"
-              >
-                <v-icon>{{ 'mdi-pencil' }}</v-icon>
-              </v-btn>
-              <v-btn color="primary" small icon tile class="mt-1 mb-2 optBtn">
-                <v-icon>{{ 'mdi-close' }}</v-icon>
-              </v-btn>
+              <div v-for="(option, i) in cardAction" :key="i">
+                <v-btn
+                  :class="option.class"
+                  color="primary"
+                  small
+                  icon
+                  tile
+                  @click="option.action"
+                >
+                  <v-icon>{{ option.icon }}</v-icon>
+                </v-btn>
+              </div>
             </div>
           </transition>
           <v-row align="center" no-gutters class="ma-0">
@@ -54,6 +53,11 @@
       v-if="addEditDialog"
       v-model="addEditDialog"
     />
+    <confirm-dialog
+      :film="film"
+      v-if="confirmDialog"
+      v-model="confirmDialog"
+    />
   </div>
 </template>
 
@@ -69,6 +73,22 @@ export default class FilmBox extends Vue {
   @Prop({ required: true }) film!: Film
 
   addEditDialog = false
+  confirmDialog = false
+
+  get cardAction() {
+    return [
+      {
+        icon: 'mdi-pencil',
+        class: 'mb-1 mt-2 optBtn',
+        action: () => (this.addEditDialog = true),
+      },
+      {
+        icon: 'mdi-close',
+        class: 'mt-1 mb-2 optBtn',
+        action: () => (this.confirmDialog = true),
+      },
+    ]
+  }
 }
 </script>
 

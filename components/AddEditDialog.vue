@@ -6,7 +6,7 @@
         <v-spacer />
         <v-icon color="white">{{ icon }}</v-icon>
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="mt-5">
         <v-form ref="form">
           <v-row>
             <v-col>
@@ -58,19 +58,19 @@
                   <v-text-field
                     v-model="date"
                     :label="$t('filmDialog.form.year')"
+                    :rules="[rules.reqField]"
+                    v-on="on"
                     prepend-icon="mdi-calendar"
                     readonly
                     class="pointerField"
-                    :rules="[rules.reqField]"
                     @click:prepend="menuDate = true"
-                    v-on="on"
                   ></v-text-field>
                 </template>
                 <v-date-picker
-                  ref="picker"
                   v-model="date"
-                  reactive
+                  ref="picker"
                   :max="maxDate"
+                  reactive
                   no-title
                 >
                 </v-date-picker>
@@ -167,7 +167,6 @@ import { $vxm } from '@/utils/api'
   computed: {
     ...mapGetters({
       filmsGenre: 'dashboard/filmsGenre',
-      genreIcons: 'dashboard/genreIcons',
     }),
   },
 })
@@ -179,7 +178,6 @@ export default class AddEditDialog extends Vue {
   @Prop() filmId?: Film['id']
 
   filmsGenre!: Array<FilmsGenre>
-  genreIcons!: string[]
   menuDate = false
   maxDate = new Date().getFullYear().toString() + '-Nan-Nan'
   rules = {
@@ -198,16 +196,61 @@ export default class AddEditDialog extends Vue {
     rating: NaN,
   }
 
-  get title(): TranslateResult {
+  saveMethod() {
     return this.addNew
-      ? this.$t('filmDialog.addFilm')
-      : this.$t('filmDialog.editFilm')
+      ? $vxm.dashboard.dispatchAddFilm(this.filmData)
+      : $vxm.dashboard.dispatchPutFilm({ id: this.filmId, data: this.filmData })
+  }
+  save() {
+    if (this.form.validate()) {
+      this.saveMethod()
+        .then(() => {
+          $vxm.snackbar.setSnack({
+            text: this.$t('messages.successDone'),
+            type: SnackbarTypes.PRIMARY,
+          })
+        })
+        .catch((e) => {
+          $vxm.snackbar.setSnack({
+            text: this.$t('messages.error'),
+            type: SnackbarTypes.ERROR,
+          })
+          throw new Error(e)
+        })
+      this.$emit('input', false)
+    } else {
+      $vxm.snackbar.setSnack({
+        text: this.snackMessage,
+        type: SnackbarTypes.ERROR,
+      })
+    }
+  }
+
+  get title(): TranslateResult {
+    return this.$t(`filmDialog.${this.addNew ? 'addFilm' : 'editFilm'}`)
   }
 
   get snackMessage(): TranslateResult {
     return Object.values(this.filmData).every((x) => !!x)
       ? this.$t('messages.correctFields')
       : this.$t('messages.fillAllFields')
+  }
+
+  get genreIcons(): string[] {
+    return [
+      'mdi-filmstrip',
+      'mdi-filmstrip-box-multiple',
+      'mdi-movie-roll',
+      'mdi-movie',
+      'mdi-movie-open-play',
+      'mdi-movie-open-star',
+      'mdi-movie-star',
+      'mdi-heart',
+      'mdi-basketball',
+      'mdi-drama-masks',
+      'mdi-delta',
+      'mdi-animation-play',
+    ]
   }
 
   get icon(): string {
@@ -222,27 +265,15 @@ export default class AddEditDialog extends Vue {
     this.filmData.year = newValue.substring(0, 4)
   }
 
-  save(): void {
-    if (this.form.validate()) {
-      $vxm.dashboard
-        .dispatchAddFilm(this.filmData)
-        .then(() => $vxm.dashboard.dispatchFilms())
-      this.$emit('input', false)
-    } else {
-      $vxm.snackbar.setSnack({
-        text: this.snackMessage,
-        type: SnackbarTypes.ERROR,
-      })
-    }
-  }
-
   @Watch('menuDate')
   onMenuChange(val: boolean) {
     val && this.$nextTick(() => (this.picker.activePicker = 'YEAR'))
   }
   created() {
-    if (this.filmId) {
-      $vxm.dashboard.dispatchOneFilm(this.filmId)
+    if (!this.addNew) {
+      $vxm.dashboard.dispatchOneFilm(this.filmId).then((data: Film) => {
+        this.filmData = data
+      })
     }
   }
 }

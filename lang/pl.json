@@ -4,15 +4,17 @@
     "polish":"Polski"
   },
   "messages":{
-    "successAdd": "Pomyślnie dodano",
-    "errorAdd": "Błąd przy dodawaniu",
+    "successDone": "Pomyślnie wykonano",
+    "error": "Błąd podczas wykonania akcji",
     "reqField": "Pole wymagane",
     "maxLength": "Dopuszczalna ilość znaków to : {n}",
     "fillAllFields": "Uzupełnij wszystkie wymagane pola",
     "correctFields": "Popraw podświetlone pola"
   },
   "buttons":{
-    "save": "Zapisz"
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń"
   },
   "layout":{
     "switchTheme": "Zmień wygląd",
@@ -41,6 +43,8 @@
   "filmDialog":{
     "addFilm": "Nowy film",
     "editFilm": "Edytuj film",
+    "deleteTitle": "Usuwanie",
+    "deleteConfirm": "Czy na pewno chcesz usunąć film {film} ?",
     "form":{
       "title": "Tytuł",
       "year": "Rok produkcji",

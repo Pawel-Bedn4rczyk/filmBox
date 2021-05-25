@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { FilmsByGenre } from '@/interfaces/commons.ts'
+import { FilmsByGenre } from '@/interfaces/commons'
 
 @Component
 export default class Dashboard extends Vue {

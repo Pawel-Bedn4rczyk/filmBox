@@ -60,7 +60,7 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'https://filmbox-e401b-default-rtdb.firebaseio.com/',
+    baseURL: 'https://filmbox-e401b-default-rtdb.firebaseio.com/films',
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)

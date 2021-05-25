@@ -4,7 +4,7 @@ import {
   mutation,
   extractVuexModule,
 } from 'vuex-class-component'
-import { FilmsByGenre, Film, FilmsGenre } from '@/interfaces/commons.ts'
+import { FilmsByGenre, Film, FilmsGenre } from '@/interfaces/commons'
 import { groupBy } from 'lodash'
 import { $axios } from '~/utils/api'
 import { $vxm, $i18n } from '@/utils/api'
@@ -17,57 +17,44 @@ const VuexModule = createModule({
 })
 export class DashboardStore extends VuexModule {
   allfilms: FilmsByGenre = {}
-  oneFilm: Film = {
-    title: '',
-    year: '',
-    director: '',
-    genre: '',
-    icon: '',
-    rating: NaN,
+
+  @action
+  async dispatchFilms(): Promise<void> {
+    const data = await $axios.$get(`${$axios.defaults.baseURL}.json`)
+    this.commitFilms(data)
   }
 
   @action
-  public async dispatchFilms(): Promise<void> {
-    try {
-      const data = await $axios.$get(`${$axios.defaults.baseURL}films.json`)
-      this.commitFilms(data)
-    } catch (e) {
-      throw new Error(e)
-    }
+  async dispatchOneFilm(payload: Film['id']) {
+    const data = await $axios.$get(`${$axios.defaults.baseURL}/${payload}.json`)
+    return data
   }
 
   @action
-  public async dispatchOneFilm(payload: Film['id']): Promise<void> {
-    console.log(payload)
-    try {
-      const data = await $axios.get(`${$axios.defaults.baseURL}films.json`)
-      console.log(data)
-
-      // this.commitOneFilm(data)
-    } catch (e) {
-      throw new Error(e)
-    }
+  async dispatchAddFilm(film: Film): Promise<void> {
+    await $axios.post(`${$axios.defaults.baseURL}.json`, film)
+    this.dispatchFilms()
   }
 
   @action
-  public async dispatchAddFilm(film: Film): Promise<void> {
-    try {
-      await $axios.post(`${$axios.defaults.baseURL}films.json`, film)
-      $vxm.snackbar.setSnack({
-        text: $i18n.t('messages.successAdd'),
-        type: SnackbarTypes.PRIMARY,
-      })
-    } catch (e) {
-      $vxm.snackbar.setSnack({
-        text: $i18n.t('messages.errorAdd'),
-        type: SnackbarTypes.ERROR,
-      })
-      throw new Error(e)
-    }
+  async dispatchPutFilm(payload: {
+    id: Film['id']
+    data: Film
+  }): Promise<void> {
+    await $axios.put(
+      `${$axios.defaults.baseURL}/${payload.id}.json`,
+      payload.data
+    )
+    this.dispatchFilms()
+  }
+
+  @action
+  async dispatchDeleteFilm(payload: Film['id']) {
+    await $axios.delete(`${$axios.defaults.baseURL}/${payload}.json`)
   }
 
   @mutation
-  private commitFilms(films: { [key: string]: Film }): void {
+  commitFilms(films: { [key: string]: Film }): void {
     //add id
     const arr = Object.entries(films).map((el) => {
       let obj = {
@@ -80,28 +67,11 @@ export class DashboardStore extends VuexModule {
     this.allfilms = groupBy(arr, 'genre')
   }
 
-  public get films(): FilmsByGenre {
+  get films(): FilmsByGenre {
     return this.allfilms
   }
 
-  public get genreIcons(): string[] {
-    return [
-      'mdi-filmstrip',
-      'mdi-filmstrip-box-multiple',
-      'mdi-movie-roll',
-      'mdi-movie',
-      'mdi-movie-open-play',
-      'mdi-movie-open-star',
-      'mdi-movie-star',
-      'mdi-heart',
-      'mdi-basketball',
-      'mdi-drama-masks',
-      'mdi-delta',
-      'mdi-animation-play',
-    ]
-  }
-
-  public get filmsGenre(): Array<FilmsGenre> {
+  get filmsGenre(): Array<FilmsGenre> {
     const _arr: Array<FilmsGenre> = []
     Object.entries(FilmGenreEnum).map((arr) => {
       const obj = {
